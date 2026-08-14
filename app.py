@@ -25,6 +25,40 @@ dashboard_data = pd.read_csv("tmdb_5000_movies.csv")
 API_KEY = st.secrets["TMDB_API_KEY"]
 
 
+st.write("TMDB API Key loaded:", bool(API_KEY))
+
+test_url = (
+    f"https://api.themoviedb.org/3/movie/550"
+    f"?api_key={API_KEY}"
+)
+
+try:
+    test_response = requests.get(
+        test_url,
+        timeout=10
+    )
+
+    st.write("TMDB Status Code:", test_response.status_code)
+
+    if test_response.status_code == 200:
+        st.success("✅ TMDB API is working!")
+
+        test_data = test_response.json()
+
+        st.write(
+            "Test Movie:",
+            test_data.get("title")
+        )
+
+    else:
+        st.error(
+            f"❌ TMDB returned: {test_response.status_code}"
+        )
+
+except requests.RequestException as e:
+    st.error(f"❌ Connection error: {e}")
+
+
 def fetch_movie_details(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?append_to_response=credits"
 
