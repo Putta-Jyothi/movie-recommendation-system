@@ -43,17 +43,19 @@ def fetch_movie_details(movie_id):
             "N/A",
             "No overview available."
         )
-
+    
     if response.status_code != 200:
-        return (
-            None,
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "No overview available."
-        )
+      st.error(f"TMDB API Error: {response.status_code}")
+
+    return (
+        None,
+        "N/A",
+        "N/A",
+        "N/A",
+        "N/A",
+        "N/A",
+        "No overview available."
+    )
 
     data = response.json()
 
