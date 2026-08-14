@@ -26,7 +26,6 @@ API_KEY = st.secrets["TMDB_API_KEY"]
 
 
 def fetch_movie_details(movie_id):
-
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?append_to_response=credits"
 
     headers = {
@@ -42,51 +41,31 @@ def fetch_movie_details(movie_id):
         )
     except requests.RequestException:
         return (
-            None,
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "No overview available."
+            None, "N/A", "N/A", "N/A",
+            "N/A", "N/A", "No overview available."
         )
 
     if response.status_code != 200:
         st.error(f"TMDB API Error: {response.status_code}")
         return (
-            None,
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "No overview available."
+            None, "N/A", "N/A", "N/A",
+            "N/A", "N/A", "No overview available."
         )
 
     data = response.json()
 
-    # Poster
     poster = None
-
     if data.get("poster_path"):
-        poster = (
-            "https://image.tmdb.org/t/p/w500"
-            + data["poster_path"]
-        )
+        poster = "https://image.tmdb.org/t/p/w500" + data["poster_path"]
 
-    # Rating
     rating = data.get("vote_average", "N/A")
-
     if rating != "N/A":
         rating = round(float(rating), 1)
 
-    # Release year
     release_date = data.get("release_date", "")
     year = release_date[:4] if release_date else "N/A"
 
-    # Genres
     genre_list = data.get("genres", [])
-
     genres = ", ".join(
         genre["name"]
         for genre in genre_list
@@ -96,9 +75,7 @@ def fetch_movie_details(movie_id):
     if not genres:
         genres = "N/A"
 
-    # Director
     director = "N/A"
-
     crew = data.get("credits", {}).get("crew", [])
 
     for person in crew:
@@ -106,9 +83,7 @@ def fetch_movie_details(movie_id):
             director = person.get("name", "N/A")
             break
 
-    # Cast - Top 5
     cast_list = data.get("credits", {}).get("cast", [])
-
     cast_names = []
 
     for person in cast_list[:5]:
@@ -120,7 +95,6 @@ def fetch_movie_details(movie_id):
     if not cast:
         cast = "N/A"
 
-    # Overview
     overview = data.get(
         "overview",
         "No overview available."
@@ -138,7 +112,6 @@ def fetch_movie_details(movie_id):
         cast,
         overview
     )
-
 
 def recommend(movie):
     movie_rows = movies[movies["title"] == movie]
