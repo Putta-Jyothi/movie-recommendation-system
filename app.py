@@ -29,61 +29,66 @@ def fetch_movie_details(movie_id):
 
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?append_to_response=credits"
 
-headers = {
-    "Authorization": f"Bearer {API_KEY}",
-    "accept": "application/json"
-}
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "accept": "application/json"
+    }
 
-try:
-    response = requests.get(
-        url,
-        headers=headers,
-        timeout=10
-    )
-except requests.RequestException:
-    return (
-        None,
-        "N/A",
-        "N/A",
-        "N/A",
-        "N/A",
-        "N/A",
-        "No overview available."
-    )
+    try:
+        response = requests.get(
+            url,
+            headers=headers,
+            timeout=10
+        )
+    except requests.RequestException:
+        return (
+            None,
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "No overview available."
+        )
 
-if response.status_code != 200:
-    st.error(f"TMDB API Error: {response.status_code}")
-
-    return (
-        None,
-        "N/A",
-        "N/A",
-        "N/A",
-        "N/A",
-        "N/A",
-        "No overview available."
-    )                    
+    if response.status_code != 200:
+        st.error(f"TMDB API Error: {response.status_code}")
+        return (
+            None,
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "N/A",
+            "No overview available."
+        )
 
     data = response.json()
 
+    # Poster
     poster = None
+
     if data.get("poster_path"):
         poster = (
             "https://image.tmdb.org/t/p/w500"
             + data["poster_path"]
         )
 
+    # Rating
     rating = data.get("vote_average", "N/A")
 
     if rating != "N/A":
         rating = round(float(rating), 1)
 
+    # Release year
     release_date = data.get("release_date", "")
     year = release_date[:4] if release_date else "N/A"
 
+    # Genres
     genre_list = data.get("genres", [])
+
     genres = ", ".join(
-        genre.get("name", "")
+        genre["name"]
         for genre in genre_list
         if genre.get("name")
     )
@@ -91,6 +96,7 @@ if response.status_code != 200:
     if not genres:
         genres = "N/A"
 
+    # Director
     director = "N/A"
 
     crew = data.get("credits", {}).get("crew", [])
@@ -100,17 +106,28 @@ if response.status_code != 200:
             director = person.get("name", "N/A")
             break
 
+    # Cast - Top 5
     cast_list = data.get("credits", {}).get("cast", [])
 
-    cast_names = [
-        person.get("name")
-        for person in cast_list[:5]
-        if person.get("name")
-    ]
+    cast_names = []
 
-    cast = ", ".join(cast_names) if cast_names else "N/A"
+    for person in cast_list[:5]:
+        if person.get("name"):
+            cast_names.append(person["name"])
 
-    overview = data.get("overview") or "No overview available."
+    cast = ", ".join(cast_names)
+
+    if not cast:
+        cast = "N/A"
+
+    # Overview
+    overview = data.get(
+        "overview",
+        "No overview available."
+    )
+
+    if not overview:
+        overview = "No overview available."
 
     return (
         poster,
