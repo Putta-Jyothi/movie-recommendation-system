@@ -26,27 +26,21 @@ API_KEY = st.secrets["TMDB_API_KEY"]
 
 
 def fetch_movie_details(movie_id):
-    url = (
-        f"https://api.themoviedb.org/3/movie/{movie_id}"
-        f"?api_key={API_KEY}&append_to_response=credits"
+
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?append_to_response=credits"
+
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "accept": "application/json"
+}
+
+try:
+    response = requests.get(
+        url,
+        headers=headers,
+        timeout=10
     )
-
-    try:
-        response = requests.get(url, timeout=10)
-    except requests.RequestException:
-        return (
-            None,
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "No overview available."
-        )
-    
-    if response.status_code != 200:
-      st.error(f"TMDB API Error: {response.status_code}")
-
+except requests.RequestException:
     return (
         None,
         "N/A",
@@ -56,6 +50,19 @@ def fetch_movie_details(movie_id):
         "N/A",
         "No overview available."
     )
+
+if response.status_code != 200:
+    st.error(f"TMDB API Error: {response.status_code}")
+
+    return (
+        None,
+        "N/A",
+        "N/A",
+        "N/A",
+        "N/A",
+        "N/A",
+        "No overview available."
+    )                    
 
     data = response.json()
 
