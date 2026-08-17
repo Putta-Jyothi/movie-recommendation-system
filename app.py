@@ -39,9 +39,7 @@ def fetch_movie_details(movie_id):
             params={"append_to_response": "credits"},
             timeout=10
         )
-        st.write("TMDB Status:", response.status_code)
-        st.write("TMDB Response:", response.text)
-
+        
         if response.status_code != 200:
             print("TMDB API Error:", response.status_code)
             return (
