@@ -24,9 +24,6 @@ dashboard_data = pd.read_csv("tmdb_5000_movies.csv")
 
 API_KEY = st.secrets["TMDB_API_KEY"]
 
-
-st.write("TMDB API Key loaded:", bool(API_KEY))
-
 test_url = (
     f"https://api.themoviedb.org/3/movie/550"
     f"?api_key={API_KEY}"
