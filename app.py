@@ -23,41 +23,6 @@ with open("similarity.pkl", "rb") as file:
 dashboard_data = pd.read_csv("tmdb_5000_movies.csv")
 
 API_KEY = st.secrets["TMDB_API_KEY"]
-
-test_url = (
-    f"https://api.themoviedb.org/3/movie/550"
-    f"?api_key={API_KEY}"
-)
-
-try:
-    test_response = requests.get(
-        test_url,
-        timeout=10
-    )
-
-    st.write("TMDB Status Code:", test_response.status_code)
-
-    if test_response.status_code == 200:
-        st.success("✅ TMDB API is working!")
-
-        test_data = test_response.json()
-
-        st.write(
-            "Test Movie:",
-            test_data.get("title")
-        )
-
-    else:
-        st.error(
-            f"❌ TMDB returned: {test_response.status_code}"
-        )
-
-except requests.RequestException as e:
-    st.error(f"❌ Connection error: {e}")
-
-
-
-
 def fetch_movie_details(movie_id):
 
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
@@ -71,13 +36,103 @@ def fetch_movie_details(movie_id):
         response = requests.get(
             url,
             headers=headers,
-            params={
-                "append_to_response": "credits"
-            },
+            params={"append_to_response": "credits"},
             timeout=10
         )
+        st.write("TMDB Status:", response.status_code)
+        st.write("TMDB Response:", response.text)
 
-    except requests.RequestException:
+        if response.status_code != 200:
+            print("TMDB API Error:", response.status_code)
+            return (
+                None,
+                "N/A",
+                "N/A",
+                "N/A",
+                "N/A",
+                "N/A",
+                "No overview available."
+            )
+
+        data = response.json()
+
+        # Poster
+        poster = None
+
+        if data.get("poster_path"):
+            poster = (
+                "https://image.tmdb.org/t/p/w500"
+                + data["poster_path"]
+            )
+
+        # Rating
+        rating = data.get("vote_average", "N/A")
+
+        if rating != "N/A":
+            rating = round(float(rating), 1)
+
+        # Release year
+        release_date = data.get("release_date", "")
+
+        year = release_date[:4] if release_date else "N/A"
+
+        # Genres
+        genres = ", ".join(
+            genre.get("name", "")
+            for genre in data.get("genres", [])
+            if genre.get("name")
+        )
+
+        if not genres:
+            genres = "N/A"
+
+        # Director
+        director = "N/A"
+
+        crew = data.get("credits", {}).get("crew", [])
+
+        for person in crew:
+            if person.get("job") == "Director":
+                director = person.get("name", "N/A")
+                break
+
+        # Cast
+        cast_names = []
+
+        cast = data.get("credits", {}).get("cast", [])
+
+        for person in cast[:5]:
+            if person.get("name"):
+                cast_names.append(person["name"])
+
+        cast_text = ", ".join(cast_names)
+
+        if not cast_text:
+            cast_text = "N/A"
+
+        # Overview
+        overview = data.get(
+            "overview",
+            "No overview available."
+        )
+
+        if not overview:
+            overview = "No overview available."
+
+        return (
+            poster,
+            rating,
+            year,
+            genres,
+            director,
+            cast_text,
+            overview
+        )
+
+    except requests.RequestException as e:
+
+        print("TMDB connection error:", e)
+
         return (
             None,
             "N/A",
@@ -87,115 +142,6 @@ def fetch_movie_details(movie_id):
             "N/A",
             "No overview available."
         )
-
-    if response.status_code != 200:
-        print("TMDB API Error:", response.status_code)
-
-        return (
-            None,
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "N/A",
-            "No overview available."
-        )
-
-    data = response.json()
-
-    # Poster
-    poster = None
-
-    if data.get("poster_path"):
-        poster = (
-            "https://image.tmdb.org/t/p/w500"
-            + data["poster_path"]
-        )
-
-    # Rating
-    rating = data.get("vote_average", "N/A")
-
-    if rating != "N/A":
-        rating = round(float(rating), 1)
-
-    # Release year
-    release_date = data.get("release_date", "")
-
-    year = (
-        release_date[:4]
-        if release_date
-        else "N/A"
-    )
-
-    # Genres
-    genres = ", ".join(
-        genre["name"]
-        for genre in data.get("genres", [])
-        if genre.get("name")
-    )
-
-    if not genres:
-        genres = "N/A"
-
-    # Director
-    director = "N/A"
-
-    crew = data.get(
-        "credits", {}
-    ).get(
-        "crew", []
-    )
-
-    for person in crew:
-
-        if person.get("job") == "Director":
-
-            director = person.get(
-                "name",
-                "N/A"
-            )
-
-            break
-
-    # Cast
-    cast_names = []
-
-    cast = data.get(
-        "credits", {}
-    ).get(
-        "cast", []
-    )
-
-    for person in cast[:5]:
-
-        if person.get("name"):
-            cast_names.append(
-                person["name"]
-            )
-
-    cast_text = ", ".join(cast_names)
-
-    if not cast_text:
-        cast_text = "N/A"
-
-    # Overview
-    overview = data.get(
-        "overview",
-        "No overview available."
-    )
-
-    if not overview:
-        overview = "No overview available."
-
-    return (
-        poster,
-        rating,
-        year,
-        genres,
-        director,
-        cast_text,
-        overview
-    )
 
 def recommend(movie):
     movie_rows = movies[movies["title"] == movie]
