@@ -1,3 +1,7 @@
+## 🚀 Live Demo
+
+[Open Movie Recommendation System](YOUR_STREAMLIT_APP_URL)
+
 \# 🎬 Movie Recommendation System
 
 
