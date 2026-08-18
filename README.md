@@ -61,15 +61,6 @@ Similarity is calculated using Cosine Similarity
 Movies are ranked based on similarity
         ↓
 Top 5 similar movies are displayed
-----
-
----
-
-### 🎯 Cosine Similarity
-
-Cosine Similarity is used to measure how similar two movies are based on their feature vectors.
-
-A higher similarity score indicates that the movies have more similar characteristics.
 
 ---
 
@@ -168,6 +159,16 @@ The `.streamlit/secrets.toml` file is excluded using `.gitignore`.
 
 The objective of this project is to develop an interactive movie recommendation system that helps users discover movies based on their interests using Machine Learning techniques.
 
+The project demonstrates the practical use of:
+
+- Machine Learning
+- Content-Based Filtering
+- Cosine Similarity
+- Data Processing
+- Data Visualization
+- API Integration
+- Web Application Development
+
 ---
 
 ## 🔮 Future Enhancements
@@ -192,5 +193,7 @@ B.Tech — CAI
 ---
 
 ## 📜 License
+
+This project is developed for educational and portfolio purposes.
 
 This project is developed for educational and portfolio purposes.
