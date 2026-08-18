@@ -16,21 +16,22 @@ The system uses **Content-Based Filtering** to find similar movies and provides 
 
 ### 🏠 Home Page
 
-![Home Page](home.png)
+*Add your Home Page screenshot here.*
 
 ### 🎬 Movie Recommendations
 
-![Movie Recommendations](recommendations.png)
+*Add your Movie Recommendations screenshot here.*
 
 ### 📊 Dashboard
 
-![Dashboard](dashboard.png)
+*Add your Dashboard screenshot here.*
 
 ### ❤️ Watchlist
 
-![Watchlist](watchlist.png)
+*Add your Watchlist screenshot here.*
 
 ---
+
 ## 📌 Project Overview
 
 The Movie Recommendation System is an interactive web application designed to help users discover movies based on their interests.
@@ -43,22 +44,22 @@ Users can also explore movie details, manage a watchlist, and view statistics th
 
 ## ✨ Features
 
-- 🎬 Content-Based Movie Recommendation
-- 🔎 Movie Search
-- 🎯 Top 5 Similar Movies
-- ⭐ Movie Ratings
-- 📅 Release Year
-- 🎭 Genre
-- 🎬 Director
-- 👥 Cast
-- 📝 Movie Overview
-- 🖼️ Movie Posters
-- ❤️ Watchlist
-- 📊 Interactive Dashboard
-- 📈 Rating Distribution
-- 📅 Movies by Release Year
-- 🎭 Movies by Genre
-- 🏆 Top Rated Movies
+* 🎬 Content-Based Movie Recommendation
+* 🔎 Movie Search
+* 🎯 Top 5 Similar Movies
+* ⭐ Movie Ratings
+* 📅 Release Year
+* 🎭 Genre
+* 🎬 Director
+* 👥 Cast
+* 📝 Movie Overview
+* 🖼️ Movie Posters
+* ❤️ Watchlist
+* 📊 Interactive Dashboard
+* 📈 Rating Distribution
+* 📅 Movies by Release Year
+* 🎭 Movies by Genre
+* 🏆 Top Rated Movies
 
 ---
 
@@ -92,16 +93,16 @@ A higher similarity score indicates that the movies have more similar characteri
 
 ## 🛠️ Technologies Used
 
-| Technology | Purpose |
-|---|---|
-| Python | Programming language |
-| Streamlit | Web application and user interface |
-| Pandas | Data processing |
-| NumPy | Numerical operations |
+| Technology   | Purpose                                     |
+| ------------ | ------------------------------------------- |
+| Python       | Programming language                        |
+| Streamlit    | Web application and user interface          |
+| Pandas       | Data processing                             |
+| NumPy        | Numerical operations                        |
 | Scikit-learn | Machine Learning and similarity calculation |
-| Plotly | Interactive data visualization |
-| TMDB API | Movie information and posters |
-| Pickle | Saving and loading processed models |
+| Plotly       | Interactive data visualization              |
+| TMDB API     | Movie information and posters               |
+| Pickle       | Saving and loading processed models         |
 
 ---
 
@@ -111,18 +112,18 @@ The project uses the **TMDB 5000 Movie Dataset**.
 
 ### Dataset Files
 
-- `tmdb_5000_movies.csv`
-- `tmdb_5000_credits.csv`
+* `tmdb_5000_movies.csv`
+* `tmdb_5000_credits.csv`
 
 The dataset contains information such as:
 
-- Movie title
-- Genres
-- Cast
-- Director
-- Ratings
-- Release date
-- Overview
+* Movie title
+* Genres
+* Cast
+* Director
+* Ratings
+* Release date
+* Overview
 
 ---
 
@@ -130,11 +131,11 @@ The dataset contains information such as:
 
 The application provides an interactive dashboard with:
 
-- 📊 Total number of movies
-- ⭐ Rating distribution
-- 📅 Movies by release year
-- 🎭 Movies by genre
-- 🏆 Top-rated movies
+* 📊 Total number of movies
+* ⭐ Rating distribution
+* 📅 Movies by release year
+* 🎭 Movies by genre
+* 🏆 Top-rated movies
 
 ---
 
@@ -144,12 +145,12 @@ The Watchlist feature allows users to save movies they are interested in.
 
 Users can view saved movies along with available movie information such as:
 
-- Rating
-- Release year
-- Genre
-- Director
-- Cast
-- Overview
+* Rating
+* Release year
+* Genre
+* Director
+* Cast
+* Overview
 
 ---
 
@@ -157,15 +158,15 @@ Users can view saved movies along with available movie information such as:
 
 For selected movies, the application displays:
 
-- Movie poster
-- Movie title
-- Rating
-- Release date
-- Release year
-- Genre
-- Director
-- Cast
-- Overview
+* Movie poster
+* Movie title
+* Rating
+* Release date
+* Release year
+* Genre
+* Director
+* Cast
+* Overview
 
 Movie information and posters are retrieved using the **TMDB API**.
 
@@ -187,26 +188,26 @@ The objective of this project is to develop an interactive movie recommendation 
 
 The project demonstrates the practical use of:
 
-- Machine Learning
-- Content-Based Filtering
-- Cosine Similarity
-- Data Processing
-- Data Visualization
-- API Integration
-- Web Application Development
+* Machine Learning
+* Content-Based Filtering
+* Cosine Similarity
+* Data Processing
+* Data Visualization
+* API Integration
+* Web Application Development
 
 ---
 
 ## 🔮 Future Enhancements
 
-- 👤 User accounts and personalized profiles
-- 🎯 Personalized recommendations
-- 🎞️ Movie trailers
-- 🔍 Advanced movie filtering
-- 📚 Improved recommendation algorithms
-- ❤️ Persistent user watchlists
-- ⭐ User ratings and reviews
-- 🤖 Hybrid recommendation system
+* 👤 User accounts and personalized profiles
+* 🎯 Personalized recommendations
+* 🎞️ Movie trailers
+* 🔍 Advanced movie filtering
+* 📚 Improved recommendation algorithms
+* ❤️ Persistent user watchlists
+* ⭐ User ratings and reviews
+* 🤖 Hybrid recommendation system
 
 ---
 
