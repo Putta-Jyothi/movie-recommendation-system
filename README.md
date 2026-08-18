@@ -12,6 +12,25 @@ The system uses **Content-Based Filtering** to find similar movies and provides 
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Home Page](home.png)
+
+### 🎬 Movie Recommendations
+
+![Movie Recommendations](recommendations.png)
+
+### 📊 Dashboard
+
+![Dashboard](dashboard.png)
+
+### ❤️ Watchlist
+
+![Watchlist](watchlist.png)
+
+---
 ## 📌 Project Overview
 
 The Movie Recommendation System is an interactive web application designed to help users discover movies based on their interests.
