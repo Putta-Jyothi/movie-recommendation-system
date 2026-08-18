@@ -64,7 +64,7 @@ Top 5 similar movies are displayed
 
 ---
 
-## 🛠️ Technologies Used
+```## 🛠️ Technologies Used
 
 | Technology | Purpose |
 |---|---|
