@@ -137,3 +137,39 @@ Cosine Similarity is calculated
 Movies are ranked based on similarity
         ↓
 Top 5 similar movies are displayed
+
+--
+
+```
+
+Then continue with the next section, for example:
+
+```markdown
+### 🎯 Cosine Similarity
+
+Cosine Similarity is used to calculate how similar two movies are based on their feature vectors.
+
+Movies with higher similarity scores are considered more similar and are recommended to the user.
+```
+
+### ✅ Your README so far
+
+- ✅ No SIH/hackathon references
+- ✅ Live Demo included
+- ✅ Screenshots included
+- ✅ Recommendations included
+- ✅ Search included
+- ✅ Ratings included
+- ✅ Release year/date included
+- ✅ Genre included
+- ✅ Director included
+- ✅ Cast included
+- ✅ Overview included
+- ✅ Posters included
+- ✅ Watchlist included
+- ✅ Dashboard included
+- ✅ Content-Based Filtering included
+- ✅ Cosine Similarity included
+- ✅ Top 5 recommendations included
+
+So **yes, you can use this**, just close the code block with ` ``` ` before continuing to the next section.
