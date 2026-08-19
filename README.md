@@ -16,21 +16,21 @@ The system uses **Content-Based Filtering** to find similar movies and provides 
 
 ### 🏠 Home Page
 
-*Add your Home Page screenshot here.*
+![Home Page](./screenshots/home.png)
 
 ### 🎬 Movie Recommendations
 
-*Add your Movie Recommendations screenshot here.*
+![Movie Recommendations](./screenshots/recommendations.png)
 
 ### 📊 Dashboard
 
-*Add your Dashboard screenshot here.*
+![Dashboard](./screenshots/dashboard.png)
 
 ### ❤️ Watchlist
 
-*Add your Watchlist screenshot here.*
+![Watchlist](./screenshots/watchlist.png)
 
----
+----
 
 ## 📌 Project Overview
 
