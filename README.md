@@ -11,24 +11,23 @@ The system uses **Content-Based Filtering** to find similar movies and provides 
 [Open Movie Recommendation System](https://putta-jyothi-movie.streamlit.app/)
 
 ---
-
 ## 📸 Screenshots
 
 ### 🏠 Home Page
 
-![Home Page](./screenshots/home.png)
+![Home Page](./home.png)
 
 ### 🎬 Movie Recommendations
 
-![Movie Recommendations](./screenshots/recommendations.png)
+![Movie Recommendations](./recommend.png)
 
 ### 📊 Dashboard
 
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./dashboard.png)
 
 ### ❤️ Watchlist
 
-![Watchlist](./screenshots/watchlist.png)
+![Watchlist](./watchlist.png)
 
 ----
 
